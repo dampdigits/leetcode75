@@ -1,11 +1,8 @@
 # 283. Move Zeroes
-<hr>
 
 Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
 
 Note that you must do this in-place without making a copy of the array.
-
-<hr>
 
 ## Example 1:
 
@@ -16,8 +13,6 @@ Output: [1,3,12,0,0]
 
 Input: nums = [0]
 Output: [0]
-
-<hr>
 
 ## Constraints:
 
