@@ -5,16 +5,18 @@ class Solution {
 		Stack<Integer> stack = new Stack<>();
 
         for (int asteroid : asteroids) {
-            while (!stack.isEmpty() && stack.peek() > 0 && stack.peek() < -asteroid) {
-                stack.pop();  // Right-moving asteroid explodes the left-moving asteroid
-            }
-
-            if (stack.isEmpty() || asteroid > 0 || stack.peek() < 0) {
-                stack.push(asteroid);  // No collision or left-moving asteroid survives
-            } else if (stack.peek() == -asteroid) {
-                stack.pop();  // Both asteroids explode
-            }
-            // If left-moving asteroid survives, do nothing
+			if (asteroid > 0 || stack.empty() || stack.peek() < 0)
+				stack.push(asteroid);
+			else {
+				int last = asteroid, top = stack.peek();
+				while ((top > 0) && (top <= -asteroid) && (!stack.empty()) && (last != -asteroid)) {
+					last = stack.pop();
+					if (! stack.empty())
+						top = stack.peek();
+				}
+				if ((stack.empty() || top < 0) && last != -asteroid)
+					stack.push(asteroid);
+			}
         }
 
         // Convert stack to array
@@ -26,7 +28,7 @@ class Solution {
         return result;
     }
 	public static void main(String[] args) {
-		int asteroids[] = {10,2,-5};
+		int asteroids[] = {-2,-2,1,-1};
 		int ans[] = asteroidCollision(asteroids);
 
 		for (int i : ans)
