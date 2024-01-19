@@ -28,6 +28,8 @@ class Solution {
         
         if (rightBranch.size() < leftBranch.size()) {
             finalBranch.addAll(rightBranch);
+			// finalBranch.addAll(finalBranch.size(), leftBranch.subList(rightBranch.size(), leftBranch.size()));
+			// or
             for (int i = rightBranch.size(); i < leftBranch.size(); i++) {
                 finalBranch.add(leftBranch.get(i));
             }
