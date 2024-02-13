@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class Solution {
     private int reorderCount = 0;
-    private List<Integer> visited = new ArrayList<>();
 	private List<List<Integer>> graph = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -12,6 +11,7 @@ public class Solution {
     }
 
     public int minReorder(int n, int[][] connections) {
+		boolean[] visited = new boolean[n];
 		for (int i = 0; i < n; i++)
 			graph.add(i, new ArrayList<>());
 
@@ -19,17 +19,17 @@ public class Solution {
 			graph.get(pair[0]).add(pair[1]);
 			graph.get(pair[1]).add(-pair[0]);
 		}
-		dfs(0);
+		dfs(0, visited);
 		return reorderCount;
     }
 
-    private void dfs(int city) {
-		if (visited.contains(city)) return;
-		visited.add(city);
+    private void dfs(int city, boolean[] visited) {
+		if (visited[city]) return;
+		visited[city] = true;
 		for (int neighbour : graph.get(city)) {
-			if (visited.contains(Math.abs(neighbour))) continue;
+			if (visited[Math.abs(neighbour)]) continue;
 			if (neighbour > 0) reorderCount++;
-			dfs(Math.abs(neighbour));
+			dfs(Math.abs(neighbour), visited);
 		}
     }
 }
