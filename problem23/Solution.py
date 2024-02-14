@@ -1,12 +1,16 @@
 def equalPairs(grid):
-    count = 0
-    cols = []
+    count = 0   # to store number of equal rows & columns
+    cols = []    # List to store columns
     n = len(grid)
+    
+    # Add columns to to cols
     for i in range(n):
-        col = []
+        col = [] # Empty list to store a column
         for j in range(n):
             col.append(grid[j][i])
         cols.append(col)
+
+    # Find equal rows and columns
     for row in grid:
         for col in cols:
             if col == row:
