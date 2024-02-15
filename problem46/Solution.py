@@ -1,6 +1,6 @@
 class Solution:
     def calcEquation(self, equations, values, queries):
-        # Create a graph (dict of dicts)
+        # Create a weighted graph (dict of dicts)
         graph = {}
         for equation, value in zip(equations, values):
             if equation[0] not in graph:
@@ -8,9 +8,10 @@ class Solution:
             if equation[1] not in graph:
                 graph[equation[1]] = {}
             graph[equation[0]][equation[1]] = value
+            # inverse value for a1 / a0
             graph[equation[1]][equation[0]] = 1 / value
         
-        visited, valStack = [], []
+        visited, valStack = [], [] # list for visited nodes, stack for values
 
         def dfs(node, target):
             if node == target: return valStack.pop()
