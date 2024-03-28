@@ -1,5 +1,5 @@
 class Solution:
-    def successfulPairs(self, spells: List[int], potions: List[int], success: int) -> List[int]:
+    def successfulPairs(self, spells, potions, success) :
         n, m = len(spells), len(potions)
         potions.sort(reverse=True) # descending order
         # indices of spells sorted in ascending order
