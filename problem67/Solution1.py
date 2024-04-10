@@ -4,7 +4,7 @@ class Solution:
         for i in range(n+1):
             ones = 0
             while i != 0:
-                if i & 1 == 1: ones += 1
+                ones += i&1
                 i >>= 1
             ans.append(ones)
         return ans
